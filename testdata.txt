@@ -1,0 +1,71 @@
+/*
+   テスト用データ。 一部、未定義の記号も含まれています。
+   浮動小数点定数も含まれています。
+ */
+
+const m=7,n=111;
+var x,y,z;
+
+procedure MULTIPLY;
+var e11,E22;
+begin e11 := x; E22:=y; z:=0;
+while E22 > 0 do
+begin
+if odd E22 then z := z+aa; 
+end
+end;
+
+
+begin
+x := m ; y := n; call MULTIPLY;
+end.
+
+/*
+   浮動小数点定数が連続で並んでいたり、記号などが混ざっているが
+   正しく認識できるようにすること 
+   12.1E123, 1.2e-123
+ */
+
+x := 2.E2.45+.123; y:= 123.456;
+x := 22.08E-1.3-.92E+2;
+y := 108e-1.1E1.23; y := 00.00345e1.24+456.e+1 89; 
+y:= 34E1.23;
+2.E-3.001e3.2.e1.45;
+22.098E-1.23-..92E+1.23.;
+
+begin
+x := m ; y := n; call MULTIPLY; /* コメントが含まれています */
+begin
+a[0]:= 10; a[11]:= 3; a[2]:= 12; a[31]:= 5; a[4]:= 2; 
+x:= 12E+2; y:=1.34; z:= .1E-3;
+i := 0;
+while i < maxdata do
+begin write(a[i]); i:=i+1 end;
+end
+end.
+
+begin
+a[0]:= 10; a[11]:= 3; a[2]:= 12; a[311]:= 5; a[4]:= 2; 
+
+i := 0;
+while i < maxdata do
+begin write(a[i]); i:=i+1 end;
+
+j:= maxdata-1;
+while j > 0 do
+begin
+i:=0;
+while i != j do
+begin
+if a[i] > a[i+1] then 
+begin taihi:= a[i];a[i]:=a[i+1];a[i+1]:=taihi end;
+i := i+1;
+end;
+j := j-1
+end;
+
+i := 0;
+while i < maxdata do
+begin write(a[i]); i:=i+1 end;
+
+end.
