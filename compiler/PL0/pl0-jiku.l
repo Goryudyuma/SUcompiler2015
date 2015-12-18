@@ -4,15 +4,13 @@
 char *tname;
 
 %}
-
 DIGIT [0-9]
 ALPHA [a-zA-Z]
 DELIM [ \t\n]
 SYMBOL [.;,()]
 OP   [+*/\-]
-
 %%
-"begin"  {return BBEGIN;}
+"begin"	{return BBEGIN;}
 "call"   {return CALL;}
 "const"  {return CONST;}
 "end"    {return EEND;}

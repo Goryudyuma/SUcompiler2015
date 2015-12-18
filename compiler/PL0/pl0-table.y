@@ -155,3 +155,43 @@ yyerror(char *s) {
   printf("ERROR=%s\n", s);
 }
 
+void enter(int object, char *id, int num)
+{
+	int tx;
+	tx = envptr[level]->top;
+	table[tx] = (struct record *)malloc(sizeof(struct record));
+	strcpy(table[tx]->name,id); table[tx]->kind = object;
+	switch (object) {
+		case constant : table[tx]->val = num; break;
+		case variable : table[tx]->level = envptr[level]->lev;
+			table[tx]->addr = envptr[level]->dx;
+			envptr[level]->dx++; break;
+		case procedure: table[tx]->level = envptr[level]->lev;
+			table[tx]->addr = codeIndex; break;
+	}
+	envptr[level]->top++;
+} 
+
+void setinitialenv()
+{
+	envptr[0] = (struct env *)malloc(sizeof(struct env));
+	envptr[0]->dx = 3;
+	envptr[0]->lev = level;
+	envptr[0]->base = 1;
+	envptr[0]->top = 1;
+}
+void setnewenv()
+{
+	level++;
+	envptr[level] = (struct env *)malloc(sizeof(struct env));
+	envptr[level]->dx = 3;
+	envptr[level]->lev = level;
+	envptr[level]->base = envptr[level-1]->top;
+	envptr[level]->top = envptr[level-1]->top;
+}
+
+void outofblock()
+{
+	printf("%d %d %d %d \n",envptr[level]->dx, envptr[level]->lev, envptr[level]->base, envptr[level]->top);
+	level--;
+}
